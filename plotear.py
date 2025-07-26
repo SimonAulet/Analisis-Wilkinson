@@ -33,7 +33,7 @@ def plot_s_parameters(network, title='Análisis de Parámetros S', save_fig=Fals
     ax1.set_xlabel('Frecuencia (GHz)')
     ax1.set_ylabel('Magnitud (dB)')
     ax1.legend()
-    ax1.grid(True, alpha=0.3)
+    ax1.grid(True, alpha=0.8)
     if not autoscales:
         ax1.set_ylim(-3.4, -2.9)  # Escala ajustada
     ax1.set_xlim(0.5, 1.5)    # Frecuencia fija
@@ -62,7 +62,7 @@ def plot_s_parameters(network, title='Análisis de Parámetros S', save_fig=Fals
 
     ax2.set_xlabel('Frecuencia (GHz)')
     ax2.legend()
-    ax2.grid(True, alpha=0.3)
+    ax2.grid(True, alpha = 0.8)
     if not autoscales:
         ax2.set_ylim(-35, -15)  # Escala ajustada (invertida para mejor visualización)
     ax2.set_xlim(0.5, 1.5)  # Frecuencia fija
@@ -83,7 +83,7 @@ def plot_s_parameters(network, title='Análisis de Parámetros S', save_fig=Fals
 
     ax3.set_xlabel('Frecuencia (GHz)')
     ax3.legend()
-    ax3.grid(True, alpha=0.3)
+    ax3.grid(True, alpha = 0.8)
     if not autoscales:
         ax3.set_ylim(-45, 5)    # Escala ajustada
     ax3.set_xlim(0.5, 1.5)  # Frecuencia fija
