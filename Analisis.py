@@ -99,36 +99,68 @@ wilkinson.s[:, 2, 2] = aux  # S33 del dispositivo
 
 # %% [markdown]
 # # Ploteos
-# Ploteamos transferencia, adaptación y aislación en tres gráficos separados desde función hecha a parte para simplificar y estandarizar ploteos
+# Ploteamos transferencia, adaptación y aislación en tres gráficos separados desde función `plot_s_parameters` hecha a parte para simplificar y estandarizar ploteos
+
+# %% [markdown]
+# Tenemos tres redes:
+#
+# La primera red es una simulación ideal hecha en ADS:
+#
+# <img src="imagenes/ideal.jpg" width="600">
+#
+# A esa red la importo y la llamo `wilkinson_ideal`
+#
+# Luego está la simulación hecha en ADS en la que se simuló el bloque físico con parámetros del sustrato y resistencias reales. A esa red la llamo `wilkinson_simulada`
+#
+# <img src="imagenes/simulado.jpg" width="600">
+#
+# Y finalmente las mediciónes reales extraidas del VNA con las que venimos trabajando hasta ahora, a las cuales tenombramos `wilkionson_real`
+#
+# <img src="imagenes/real.jpg" width="600">
+#
+# Como las simulaciónes estan exportadas como parámetros s3p, es decir red de 3 puertos, no hace falta hacerles mucho procesamiento
+#
 
 # %%
-from plotear import plot_s_parameters
+# Se preparan las tres redes
+wilkinson_ideal = rf.Network('simulaciones/ideal.s3p')
+wilkinson_simulado = rf.Network('simulaciones/simulado.s3p')
+wilkinson_real = wilkinson
 
-# %%
-plot_s_parameters(wilkinson, 'Análisis desde parámetros medidos', save_fig=True)
-
-
-# %%
-from importlib import reload
 
 # %%
 from importlib import reload
 import plotear  # Importa el módulo (no la función directamente)
+
+# %%
 reload(plotear)  # Recarga el módulo desde disco
 from plotear import plot_s_parameters  # Vuelve a importar la función actualizada
 
+# %% [markdown]
+# ## Función de ploteosabs
+# Función guardada en un archivo a parte llamado `plotear.py` que plotea con un formato estandarizado para este caso. Las lineas verticales sólidas azules están fijadas en $1\text{GHz}$ mientras que las líneas punteadas son los picos (máximo o mínimo segun corresponda) de cada curva. El valor en $\text{GHz}$ de cada línea punteada está en la leyenda
+
+# %% [markdown]
+# ## Primero se plotea el ideal
 
 # %%
-ideal = rf.Network('simulaciones/ideal.s3p')
+plot_s_parameters(wilkinson_ideal, 'Análisis desde simulacion ideal', save_fig=True, autoscales=True)
+
+
+# %% [markdown]
+# Luego se plotean los parámetros desde la simulación
 
 # %%
-plot_s_parameters(ideal, 'Analisis de red ideal', save_fig=True, autoscales=True)
+plot_s_parameters(wilkinson_simulado, 'Analisis de red ideal', save_fig=True, autoscales=True)
+
+# %% [markdown]
+# Y finalmente desde los parámetros medidos
 
 # %%
-simulado = rf.Network('simulaciones/simulado.s3p')
+plot_s_parameters(wilkinson_real, 'Analisis de red real', save_fig=True, autoscales=False)
 
-# %%
-plot_s_parameters(simulado, 'Analisis de red simulada', save_fig=True, autoscales=True)
+# %% [markdown]
+# A parte del marcado ripple, se puede ver que las tendencias se mantienen en cuando a los picos al lado del desfasaje
 
 # %% [markdown]
 # # Corrección de error de instrumento
@@ -208,60 +240,7 @@ wilkinson_fix.s[:, 1, 2] = wilkinson.s[:, 1, 2] * correccion.s[:, 0, 1]
 # Taraaann a ver los ploteos corregidos
 
 # %%
-# Configuración del estilo
-plt.style.use('seaborn-v0_8-darkgrid')
-plt.rcParams['figure.figsize'] = (18, 5)
-plt.rcParams['font.size'] = 12
-
-# Crear figura con 3 subplots horizontales
-fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(18, 5))
-fig.suptitle('Análisis del Divisor Wilkinson', fontsize=16, y=1.05)
-
-# -----------------------------------------------------------------------------
-# Gráfico 1: Transferencias (S21 y S31) - Escala: -3.4 dB a -2.9 dB
-# -----------------------------------------------------------------------------
-ax1.set_title('Transferencias', fontweight='bold')
-ax1.plot(wilkinson_fix.frequency.f/1e9, 20*np.log10(np.abs(wilkinson_fix.s[:, 1, 0])), label='$S_{21}$', linewidth=2, color='royalblue')
-ax1.plot(wilkinson_fix.frequency.f/1e9, 20*np.log10(np.abs(wilkinson_fix.s[:, 2, 0])), label='$S_{31}$', linewidth=2, color='darkorange')
-ax1.axvline(1.0, color='blue', linewidth=1)  # Línea vertical en 1 GHz
-ax1.set_xlabel('Frecuencia (GHz)')
-ax1.set_ylabel('Magnitud (dB)')
-ax1.legend()
-ax1.grid(True, alpha=0.3)
-ax1.set_ylim(-3.4, -2.9)  # Escala ajustada
-ax1.set_xlim(0.5, 1.5)    # Frecuencia fija
-
-# -----------------------------------------------------------------------------
-# Gráfico 2: Adaptaciones (S11, S22, S33) - Escala: -15 dB a -35 dB
-# -----------------------------------------------------------------------------
-ax2.set_title('Adaptaciones', fontweight='bold')
-ax2.plot(wilkinson_fix.frequency.f/1e9, 20*np.log10(np.abs(wilkinson_fix.s[:, 0, 0])), label='$S_{11}$', linewidth=2, color='firebrick')
-ax2.plot(wilkinson_fix.frequency.f/1e9, 20*np.log10(np.abs(wilkinson_fix.s[:, 1, 1])), label='$S_{22}$', linewidth=2, color='forestgreen')
-ax2.plot(wilkinson_fix.frequency.f/1e9, 20*np.log10(np.abs(wilkinson_fix.s[:, 2, 2])), label='$S_{33}$', linewidth=2, color='darkviolet')
-ax2.axvline(1.0, color='blue', linewidth=1)  # Línea vertical en 1 GHz
-ax2.set_xlabel('Frecuencia (GHz)')
-ax2.legend()
-ax2.grid(True, alpha=0.3)
-#ax2.set_ylim(-35, -15)  # Escala ajustada (invertida para mejor visualización)
-ax2.set_xlim(0.5, 1.5)  # Frecuencia fija
-
-# -----------------------------------------------------------------------------
-# Gráfico 3: Aislación (S23) - Escala: -45 dB a 5 dB
-# -----------------------------------------------------------------------------
-ax3.set_title('Aislación ($S_{23}$)', fontweight='bold')
-ax3.plot(wilkinson_fix.frequency.f/1e9, 20*np.log10(np.abs(wilkinson_fix.s[:, 2, 1])),
-         color='purple', linewidth=2, label='$S_{23}$')
-ax3.axvline(1.0, color='blue', linewidth=1)  # Línea vertical en 1 GHz
-ax3.set_xlabel('Frecuencia (GHz)')
-ax3.legend()
-ax3.grid(True, alpha=0.3)
-ax3.set_ylim(-45, 5)    # Escala ajustada
-ax3.set_xlim(0.5, 1.5)  # Frecuencia fija
-
-# Ajustar espaciado y guardar
-plt.tight_layout()
-#plt.savefig('wilkinson_analysis_scaled.png', dpi=300, bbox_inches='tight')
-plt.show()
+plot_s_parameters(wilkinson_fix, autoscales=True)
 
 # %% [markdown]
 # Las adaptaciónes están exageradas ya que se están sumando los dB de la adaptación original más los de la adaptación del trough (que no da cero) así que las dejo fuera del calculo. Revierto la red corregida para volver las reflexiónes a sus valores originales
@@ -271,146 +250,14 @@ wilkinson_fix.s[:, 0, 0] = wilkinson.s[:, 0, 0]
 wilkinson_fix.s[:, 1, 1] = wilkinson.s[:, 1, 1]
 wilkinson_fix.s[:, 2, 2] = wilkinson.s[:, 2, 2]
 
-# %% jupyter={"source_hidden": true}
-# Configuración del estilo
-plt.style.use('seaborn-v0_8-darkgrid')
-plt.rcParams['figure.figsize'] = (18, 12)
-plt.rcParams['font.size'] = 12
-
-# Crear figura con 3 subplots horizontales
-
-fig, ((ax1, ax2, ax3), (ax4, ax5, ax6)) = plt.subplots(2, 3, figsize=(18, 12))
-fig.suptitle('Análisis del Divisor Wilkinson', fontsize=16, y=1.05)
-
-# -----------------------------------------------------------------------------
-# Gráfico 1: Transferencias (S21 y S31) - Escala: -3.4 dB a -2.9 dB
-# -----------------------------------------------------------------------------
-ax1.set_title('Transferencias', fontweight='bold')
-ax1.plot(wilkinson.frequency.f/1e9, 20*np.log10(np.abs(wilkinson.s[:, 1, 0])), label='$S_{21}$', linewidth=2, color='royalblue')
-ax1.plot(wilkinson.frequency.f/1e9, 20*np.log10(np.abs(wilkinson.s[:, 2, 0])), label='$S_{31}$', linewidth=2, color='darkorange')
-ax1.axvline(1.0, color='blue', linewidth=1)  # Línea vertical en 1 GHz
-ax1.set_xlabel('Frecuencia (GHz)')
-ax1.set_ylabel('Magnitud (dB)')
-ax1.legend()
-ax1.grid(True, alpha=0.3)
-ax1.set_ylim(-3.4, -2.9)  # Escala ajustada
-ax1.set_xlim(0.5, 1.5)    # Frecuencia fija
-
-# -----------------------------------------------------------------------------
-# Gráfico 2: Adaptaciones (S11, S22, S33) - Escala: -15 dB a -35 dB
-# -----------------------------------------------------------------------------
-ax2.set_title('Adaptaciones', fontweight='bold')
-ax2.plot(wilkinson.frequency.f/1e9, 20*np.log10(np.abs(wilkinson.s[:, 0, 0])), label='$S_{11}$', linewidth=2, color='royalblue')
-ax2.plot(wilkinson.frequency.f/1e9, 20*np.log10(np.abs(wilkinson.s[:, 1, 1])), label='$S_{22}$', linewidth=2, color='darkorange')
-ax2.plot(wilkinson.frequency.f/1e9, 20*np.log10(np.abs(wilkinson.s[:, 2, 2])), label='$S_{33}$', linewidth=2, color='firebrick')
-ax2.axvline(1.0, color='blue', linewidth=1)  # Línea vertical en 1 GHz
-ax2.set_xlabel('Frecuencia (GHz)')
-ax2.legend()
-ax2.grid(True, alpha=0.3)
-#ax2.set_ylim(-35, -15)  # Escala ajustada (invertida para mejor visualización)
-ax2.set_xlim(0.5, 1.5)  # Frecuencia fija
-
-# -----------------------------------------------------------------------------
-# Gráfico 3: Aislación (S23) - Escala: -45 dB a 5 dB
-# -----------------------------------------------------------------------------
-ax3.set_title('Aislación ($S_{23}$)', fontweight='bold')
-ax3.plot(wilkinson.frequency.f/1e9, 20*np.log10(np.abs(wilkinson.s[:, 2, 1])),
-         color='purple', linewidth=2, label='$S_{23}$')
-ax3.axvline(1.0, color='blue', linewidth=1)  # Línea vertical en 1 GHz
-ax3.set_xlabel('Frecuencia (GHz)')
-ax3.legend()
-ax3.grid(True, alpha=0.3)
-ax3.set_ylim(-45, 5)    # Escala ajustada
-ax3.set_xlim(0.5, 1.5)  # Frecuencia fija
-
-# -----------------------------------------------------------------------------
-# Gráfico 4: Transferencias (S21 y S31) - Escala: -3.4 dB a -2.9 dB
-# -----------------------------------------------------------------------------
-ax4.set_title('Transferencias (corregido)', fontweight='bold')
-ax4.plot(wilkinson_fix.frequency.f/1e9, 20*np.log10(np.abs(wilkinson_fix.s[:, 1, 0])), label='$S_{21}$', linewidth=2, color='royalblue')
-ax4.plot(wilkinson_fix.frequency.f/1e9, 20*np.log10(np.abs(wilkinson_fix.s[:, 2, 0])), label='$S_{31}$', linewidth=2, color='darkorange')
-ax4.axvline(1.0, color='blue', linewidth=1)  # Línea vertical en 1 GHz
-ax4.set_xlabel('Frecuencia (GHz)')
-ax4.set_ylabel('Magnitud (dB)')
-ax4.legend()
-ax4.grid(True, alpha=0.3)
-ax4.set_ylim(-3.4, -2.9)  # Escala ajustada
-ax4.set_xlim(0.5, 1.5)    # Frecuencia fija
-
-# -----------------------------------------------------------------------------
-# Gráfico 5: Adaptaciones (S11, S22, S33) - Escala: -15 dB a -35 dB
-# -----------------------------------------------------------------------------
-ax5.set_title('Adaptaciones', fontweight='bold')
-ax5.plot(wilkinson_fix.frequency.f/1e9, 20*np.log10(np.abs(wilkinson_fix.s[:, 0, 0])), label='$S_{11}$', linewidth=2, color='royalblue')
-ax5.plot(wilkinson_fix.frequency.f/1e9, 20*np.log10(np.abs(wilkinson_fix.s[:, 1, 1])), label='$S_{22}$', linewidth=2, color='darkorange')
-ax5.plot(wilkinson_fix.frequency.f/1e9, 20*np.log10(np.abs(wilkinson_fix.s[:, 2, 2])), label='$S_{33}$', linewidth=2, color='firebrick')
-ax5.axvline(1.0, color='blue', linewidth=1)  # Línea vertical en 1 GHz
-ax5.set_xlabel('Frecuencia (GHz)')
-ax5.legend()
-ax5.grid(True, alpha=0.3)
-#ax2.set_ylim(-35, -15)  # Escala ajustada (invertida para mejor visualización)
-ax5.set_xlim(0.5, 1.5)  # Frecuencia fija
-
-# -----------------------------------------------------------------------------
-# Gráfico 6: Aislación (S23) - Escala: -45 dB a 5 dB
-# -----------------------------------------------------------------------------
-ax6.set_title('Aislación ($S_{23}$, corregido)', fontweight='bold')
-ax6.plot(wilkinson_fix.frequency.f/1e9, 20*np.log10(np.abs(wilkinson_fix.s[:, 2, 1])),
-         color='purple', linewidth=2, label='$S_{23}$')
-ax6.axvline(1.0, color='blue', linewidth=1)  # Línea vertical en 1 GHz
-ax6.set_xlabel('Frecuencia (GHz)')
-ax6.legend()
-ax6.grid(True, alpha=0.3)
-ax6.set_ylim(-45, 5)    # Escala ajustada
-ax6.set_xlim(0.5, 1.5)  # Frecuencia fija
-
-
-# Ajustar espaciado y guardar
-plt.tight_layout()
-#plt.savefig('wilkinson_analysis_scaled.png', dpi=300, bbox_inches='tight')
-plt.show()
-
 # %%
-
-# %%
-
-# %%
-
-# %%
-
-# %%
-
-# %%
+plot_s_parameters(wilkinson_fix, autoscales=False)
 
 # %% [markdown]
-# Para probar la correccion, necesito red de 2 puertos de wilkinson; genero `wilkinson_12` para los parámetros S de los puertos 1 y 2 de Wilkinson (que no es lo mismo que $S_{21}$)
+# A ver contra el no corregido
 
 # %%
-wilkinson.plot_s_db()
+plot_s_parameters(wilkinson_real)
 
-# %%
-wilkinson_12 = wilkinson.subnetwork([0, 1])
-
-# %%
-wilkinson_12_fix = wilkinson_12 * correccion
-
-# %%
-plt.figure(figsize=(10, 6))
-plt.plot(wilkinson.frequency.f/1e9, 20 * np.log10(np.abs(wilkinson.s[:, 1, 0])),
-         label='$S_{21}$ (Original)', color='blue', linewidth=2)
-plt.plot(wilkinson.frequency.f/1e9, 20 * np.log10(np.abs(wilkinson_12_fix.s[:, 1, 0])),
-         label='$S_{21}$ (Corregido)', color='red', linestyle='--', linewidth=2)
-plt.plot(wilkinson.frequency.f/1e9, 20 * np.log10(np.abs(correccion.s[:, 1, 0]))-2.7,
-         label='Trough (inv)', color='red', linestyle='-', linewidth=1)
-plt.plot(wilkinson.frequency.f/1e9, 20 * np.log10(np.abs(through.s[:, 1, 0]))-2.7,
-         label='Trough', color='blue', linestyle='-', linewidth=1)
-
-# Personalización
-plt.title("Comparación de $S_{21}$: Original vs. Corregido", fontsize=14)
-plt.xlabel("Frecuencia (GHz)", fontsize=12)
-plt.ylabel("Magnitud (dB)", fontsize=12)
-plt.legend(fontsize=12)
-plt.grid(True, alpha=0.7)
-plt.ylim(-3.5, -2.5)
-plt.tight_layout()
-plt.show()
+# %% [markdown]
+# En este caso, el $S_{21}$ mejora bastante en cuanto al ancho de banda pero el ripple no se solucióna
