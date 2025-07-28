@@ -145,20 +145,20 @@ from plotear import plot_s_parameters  # Vuelve a importar la función actualiza
 # ## Primero se plotea el ideal
 
 # %%
-plot_s_parameters(wilkinson_ideal, 'Análisis desde simulacion ideal', save_fig=True, autoscales=True)
+plot_s_parameters(wilkinson_ideal, 'Análisis red ideal', save_fig=True, autoscales=True)
 
 
 # %% [markdown]
 # Luego se plotean los parámetros desde la simulación
 
 # %%
-plot_s_parameters(wilkinson_simulado, 'Analisis de red ideal', save_fig=True, autoscales=True)
+plot_s_parameters(wilkinson_simulado, 'Analisis de red simulada', save_fig=True, autoscales=True)
 
 # %% [markdown]
 # Y finalmente desde los parámetros medidos
 
 # %%
-plot_s_parameters(wilkinson_real, 'Analisis de red real', save_fig=True, autoscales=False)
+plot_s_parameters(wilkinson_real, 'Analisis red real', save_fig=True, autoscales=False)
 
 # %% [markdown]
 # A parte del marcado ripple, se puede ver que las tendencias se mantienen en cuando a los picos al lado del desfasaje
