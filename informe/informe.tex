@@ -42,7 +42,7 @@ P_2 = P_3 = P_1 / 2 \Rightarrow 10\log\left(\frac{P_2}{P_1}\right) = -3\text{dB}
 \subsubsection{Materiales y equipamiento}
 
 \begin{minipage}{0.66\linewidth}
-  El proyecto se va a imprimir sobre una placa para radiofrecuencia con las siguientes características:
+  El proyecto se va a imprimir sobre una placa para radiofrecuencia \cite{RT-DUROID}con las siguientes características:
   \begin{tabular}{|l|l|l|}
   \hline
   Parámetro & Valor & \\ \hline
@@ -56,13 +56,26 @@ P_2 = P_3 = P_1 / 2 \Rightarrow 10\log\left(\frac{P_2}{P_1}\right) = -3\text{dB}
 \end{minipage}
 
 \begin{minipage}{0.32\linewidth}
-    \includegraphics[width=0.8\linewidth]{./img/datasheet_wegstr.png}
+    \includegraphics[width=1\linewidth]{./img/wegstr.png}
 \end{minipage}
-\begin{minipage}[t]{0.66\linewidth}
-La impresión sobre el PCB se hace con un router CNC marca Wegstr con una precisión de $4\mu m$ por paso.
+\begin{minipage}{0.66\linewidth}
+La impresión sobre el PCB se hace con un router CNC marca Wegstr \cite{wegstr} con las siguientes características.
 \end{minipage}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Parámetro} & \textbf{Valor} \\
+\hline
+Pasos del motor paso a paso & 0.004 mm \\
+Dimensiones (X × Y × Z) & 380 × 460 × 290 mm \\
+Peso & 7 kg \\
+Diámetro del husillo & 3.175 mm \\
+Repetitividad & 0.02 mm \\
+País de origen & República Checa \\
+\hline
+\end{tabular}
+
 \begin{minipage}{0.4\linewidth}
-  Las mediciones sobre el proyecto final con un Analizador de redes de dos puertos marca Rohde & Schwarz modelo ZNC3-2Port
+  Las mediciones sobre el proyecto final con un Analizador de redes de dos puertos marca Rohde \& Schwarz modelo ZNC3-2Port \cite{RS_ZNC}
 \end{minipage}
 \begin{minipage}{0.59\linewidth}
   \includegraphics[width=\linewidth]{./img/vna.png}
@@ -105,22 +118,51 @@ Si bien hay un claro desfasaje hacia frecuencias más altas por limitaciónes de
 
 \subsection{Construcción física}
 
+\begin{center}
 \includegraphics[width=0.7\linewidth]{./img/real.jpg}
+\end{center}
 
-\begin{minipage}{0.4\linewidth}
-Los datos del diseño se exportan en formato Gerber para su fabricación mediante el router especificado previamente. Durante el ensamblado, los puertos SMA se sueldan manualmente para permitir la conexión con el analizador de redes.
+\begin{minipage}{1\linewidth}
+Los datos del diseño se exportan en formato Gerber para su fabricación mediante el router especificado previamente. Para reducir el desgaste de la mecha de desbaste se "dibuja" manualmente material no desbastado alrededor y en el medio del divisor con una separación entre el material de relleno (tierra) y las pistas de aproximadamente 2 anchos de pista.
+Durante el ensamblado, los puertos SMA se sueldan manualmente para permitir la conexión con el analizador de redes.
 Se añaden conexiónes entre el cobre que rodea a las pistas (por dentro y por fuera) y la tierra (placa de cobre inferior) evitando acoplamientos parásitos
 \end{minipage}
-\begin{minipage}{0.59\linewidth}
-\includegraphics[width=0.49\linewidth]{./img/construccion1.jpg}
-\includegraphics[width=0.49\linewidth]{./img/construccion2.jpg}
+\begin{minipage}{0.33\linewidth}
+\includegraphics[width=0.99\linewidth]{./img/gerber.png}
 \end{minipage}
-\subsection{Anexos}
-Para más información y documentación técnica, se pueden consultar los siguientes recursos:
+\begin{minipage}{0.33\linewidth}
+\includegraphics[width=0.99\linewidth]{./img/construccion1.jpg}
+\end{minipage}
+\begin{minipage}{0.33\linewidth}
+\includegraphics[width=0.99\linewidth]{./img/construccion2.jpg}
+\end{minipage}
 
-\begin{itemize}
-    \item Especificaciones del Analizador de Redes Rohde \& Schwarz ZNC 3 - 2 Port: \url{https://scdn.rohde-schwarz.com/ur/pws/dl_downloads/dl_common_library/dl_brochures_and_datasheets/pdf_1/ZNC_dat-sw_en_5214-5610-22_v0302.pdf}
-    \item Especificaciones técnicas del router CNC Wegstr: \url{https://www.wegstr.com/specs}
-    \item Datasheet del material dieléctrico: \url{https://www.pcb-material.com/datasheet}
-\end{itemize}
+\section{Resultados}
+A continuación, se procede a realizar las mediciones utilizando el analizador de redes vectoriales (VNA) previamente especificado. Los resultados obtenidos se presentan a continuación
+
+\includegraphics[width=1\linewidth]{./img/plot-real.png}
+
+\subsection{Resultados obtenidos vs esperados}
+Los resultados muestran que el divisor cumple su función ya que en la frecuencia objetivo se tiene una relación entre entrada y salida de $\approx -3\text{dB}$ y la aislación entre los puertos de salida y las adaptaciones de los tres puertos están todas por debajo de $-20\text{dB}$. Se observa mucho ripple no deseado en la transferencia. Para determinar si el ripple se debía al divisor o a los cables del VNA hicimos una medición del through entre los dos cables. En el análisis anexo se hace la prueba de multiplicar los parámetros $S$ de la transferencia por la inversa del through de los cables (siempre respetando el orden de conexiones original para que los datos sean válidos) pero esto no mejora de manera sustancial el ripple si no que parece simplemente desfasarlo.
+
+A futuro sería bueno implementar mayor iteración en las simulaciones del bloque en el software, antes de construirlo. Si se observan las mediciones simuladas vs las reales se ve que la tendencia en el corrimiento de la máxima transferencia y máxima aislación se mantiene (se podría haber evitado)
+
+\section*{analisis en Scikit-rf}
+Se añade como complemento el análisis hecho usando Python + Matplotlib junto con Scikit-rf en una notebook de Jupyter en el cual se analisan tanto las simulaciońes como los valores reales extraidos del VNA y se generan los ploteos puestos en este informe.
+
+Link a repositorio en Github \url{https://github.com/SimonAulet/Analisis-Wilkinson/blob/6befe0e9da6b371b91b1758c12dfce15b5cf7c16/Analisis.ipynb}
+
+\begin{thebibliography}{9} % El número '9' indica el ancho máximo de etiquetas (ajustar si tienes +10 ítems)
+\bibitem{RS_ZNC}
+Rohde \& Schwarz. \textit{ZNC Series Vector Network Analyzer Datasheet},
+versión 3.02, 2022. \\
+Disponible: \url{https://scdn.rohde-schwarz.com/ur/pws/dl_downloads/dl_common_library/dl_brochures_and_datasheets/pdf_1/ZNC_dat-sw_en_5214-5610-22_v0302.pdf}
+\bibitem{RT-DUROID}
+Sustrato. \textit{Laminados 5880LZ de RT Duroid}\\
+Disponible: \url{https://www.rogerscorp.com/-/media/project/rogerscorp/documents/advanced-electronics-solutions/english/data-sheets/rt-duroid-5880lz-high-frequency-laminates.pdf}
+\bibitem{wegstr}
+Router para impresión
+Disponible: \url{https://wegstr.com/CNC-Wegstr-LIGHT}
+\end{thebibliography}
+
 \end{document}

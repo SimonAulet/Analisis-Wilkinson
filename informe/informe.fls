@@ -168,11 +168,11 @@ INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr6.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT ./img/sustrato.jpg
 INPUT ./img/sustrato.jpg
-INPUT ./img/datasheet_wegstr.png
-INPUT ./img/datasheet_wegstr.png
-INPUT ./img/vna.png
-INPUT ./img/vna.png
+INPUT ./img/wegstr.png
+INPUT ./img/wegstr.png
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
+INPUT ./img/vna.png
+INPUT ./img/vna.png
 INPUT ./img/ideal.jpg
 INPUT ./img/ideal.jpg
 INPUT ./img/plot-ideal.png
@@ -185,10 +185,15 @@ INPUT ./img/plot-simulado.png
 INPUT ./img/plot-simulado.png
 INPUT ./img/real.jpg
 INPUT ./img/real.jpg
+INPUT ./img/gerber.png
+INPUT ./img/gerber.png
 INPUT ./img/construccion1.jpg
 INPUT ./img/construccion1.jpg
 INPUT ./img/construccion2.jpg
 INPUT ./img/construccion2.jpg
+INPUT ./img/plot-real.png
+INPUT ./img/plot-real.png
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmri12.tfm
 INPUT ./informe.aux
 INPUT ./informe.out
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
@@ -200,4 +205,5 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmr12.pfb
+INPUT /usr/share/texmf/fonts/type1/public/lm/lmri12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb
