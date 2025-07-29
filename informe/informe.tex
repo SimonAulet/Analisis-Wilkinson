@@ -10,16 +10,22 @@
 \usepackage{siunitx}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{xcolor}
+\hypersetup{colorlinks=true, linkcolor=blue!50!black, urlcolor=gray!70!black}
 
-\title{Informe del Divisor de Potencia de Wilkinson}
+\title{Informe de construcción de Divisor de Potencia de Wilkinson}
 \author{Leila Scerbo, Simón Aulet}
-\date{\today}
-
-
+\date{Julio 2025}
 \begin{document}
-\section{Diseñamos un divisor de potencia de Wilkinson balanceado}
+\maketitle
 
-\subsection{Principio de funcionamiento}
+\begin{abstract}
+Este informe detalla el proceso de diseño, simulación y construcción de un divisor de potencia de Wilkinson balanceado para operar a \SI{1}{\giga\hertz}. Se presentan los fundamentos teóricos, las simulaciones electromagnéticas, el proceso de fabricación mediante router CNC y las mediciones finales realizadas con un analizador de redes vectoriales.
+\end{abstract}
+
+\section*{Diseñamos un divisor de potencia de Wilkinson balanceado}
+
+\section*{Principio de funcionamiento}
 Se trata de dividir una señal de entrada en dos señales cada una con una fracción de la potencia usando dos transformadores de $\frac{1}{4}$ de onda para adaptar la impedancia de entrada al circuito. La relación entre la potencia de entrada $P_1$ y las potencias de salida de cada puerto $P_2$ y $P_3$ viene dada por la razón de división de potencia $k = \sqrt{P_2/P_3}$ resultando en:
 \begin{equation}
 Z_{01} = Z_0 \sqrt{1 + k^2}
@@ -38,9 +44,10 @@ Entonces cada salida debe reflejar un 50\% de la potencia de entrada quedando:
 P_2 = P_3 = P_1 / 2 \Rightarrow 10\log\left(\frac{P_2}{P_1}\right) = -3\text{dB}
 \end{equation}
 
-\subsection{Proceso de diseño}
-\subsubsection{Materiales y equipamiento}
+\section*{Proceso de diseño}
+\subsection*{Materiales y equipamiento}
 
+\subsubsection*{PCB}
 \begin{minipage}{0.66\linewidth}
   El proyecto se va a imprimir sobre una placa para radiofrecuencia \cite{RT-DUROID}con las siguientes características:
   \begin{tabular}{|l|l|l|}
@@ -55,12 +62,16 @@ P_2 = P_3 = P_1 / 2 \Rightarrow 10\log\left(\frac{P_2}{P_1}\right) = -3\text{dB}
   \includegraphics[width=\linewidth]{./img/sustrato.jpg}
 \end{minipage}
 
+\subsubsection*{Router CNC}
 \begin{minipage}{0.32\linewidth}
     \includegraphics[width=1\linewidth]{./img/wegstr.png}
 \end{minipage}
 \begin{minipage}{0.66\linewidth}
 La impresión sobre el PCB se hace con un router CNC marca Wegstr \cite{wegstr} con las siguientes características.
 \end{minipage}
+\vspace{8pt}
+
+\begin{center}
 \begin{tabular}{|l|l|}
 \hline
 \textbf{Parámetro} & \textbf{Valor} \\
@@ -73,6 +84,9 @@ Repetitividad & 0.02 mm \\
 País de origen & República Checa \\
 \hline
 \end{tabular}
+\end{center}
+
+\subsubsection*{Analizador de redes}
 
 \begin{minipage}{0.4\linewidth}
   Las mediciones sobre el proyecto final con un Analizador de redes de dos puertos marca Rohde \& Schwarz modelo ZNC3-2Port \cite{RS_ZNC}
@@ -81,7 +95,7 @@ País de origen & República Checa \\
   \includegraphics[width=\linewidth]{./img/vna.png}
 \end{minipage}
 
-\subsection{Diseño ideal}
+\section*{Diseño ideal}
 Primero hicimos un diagrama funcional y simulamos las relaciones entre entrada y salida.
 El esquemático se diseña en ADS y se pone a continuación
 \includegraphics[width = 0.9\linewidth]{./img/ideal.jpg}
@@ -98,7 +112,7 @@ Las líneas verticales gruesas en cada ploteo indican la frecuencia objetivo $1\
 
 \includegraphics[width=0.9\linewidth]{./img/plot-ideal.png}
 
-\subsection{Diseño físico}
+\section*{Diseño físico}
 Luego se diseña el bloque físico en ADS a partir del esquemático
 
 \includegraphics[width=0.6\linewidth]{./img/simulado.jpg}
@@ -116,7 +130,7 @@ Una vez definido el bloque físico, se realizan simulaciones en ADS para evaluar
 
 Si bien hay un claro desfasaje hacia frecuencias más altas por limitaciónes de tiempo se determina que se mantiene el diseño
 
-\subsection{Construcción física}
+\section*{Construcción física}
 
 \begin{center}
 \includegraphics[width=0.7\linewidth]{./img/real.jpg}
@@ -137,12 +151,12 @@ Se añaden conexiónes entre el cobre que rodea a las pistas (por dentro y por f
 \includegraphics[width=0.99\linewidth]{./img/construccion2.jpg}
 \end{minipage}
 
-\section{Resultados}
+\section*{Resultados}
 A continuación, se procede a realizar las mediciones utilizando el analizador de redes vectoriales (VNA) previamente especificado. Los resultados obtenidos se presentan a continuación
 
 \includegraphics[width=1\linewidth]{./img/plot-real.png}
 
-\subsection{Resultados obtenidos vs esperados}
+\subsection*{Resultados obtenidos vs esperados}
 Los resultados muestran que el divisor cumple su función ya que en la frecuencia objetivo se tiene una relación entre entrada y salida de $\approx -3\text{dB}$ y la aislación entre los puertos de salida y las adaptaciones de los tres puertos están todas por debajo de $-20\text{dB}$. Se observa mucho ripple no deseado en la transferencia. Para determinar si el ripple se debía al divisor o a los cables del VNA hicimos una medición del through entre los dos cables. En el análisis anexo se hace la prueba de multiplicar los parámetros $S$ de la transferencia por la inversa del through de los cables (siempre respetando el orden de conexiones original para que los datos sean válidos) pero esto no mejora de manera sustancial el ripple si no que parece simplemente desfasarlo.
 
 A futuro sería bueno implementar mayor iteración en las simulaciones del bloque en el software, antes de construirlo. Si se observan las mediciones simuladas vs las reales se ve que la tendencia en el corrimiento de la máxima transferencia y máxima aislación se mantiene (se podría haber evitado)

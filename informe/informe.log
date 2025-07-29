@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.6.30)  29 JUL 2025 11:47
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2025.6.30)  29 JUL 2025 12:04
  restricted system commands enabled.
 **"/home/simon/Dropbox/UNRN/4.Electronica Analogica II/Divisor Wilkinson/Analis
 is mediciones/informe/informe.tex"
@@ -509,15 +509,27 @@ Package caption Info: New subtype `subfigure' on input line 238.
 Package caption Info: New subtype `subtable' on input line 238.
 \c@subtable=\count302
 )
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2022/01/06 v1.3d Standard LaTeX Color (DPC)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package color Info: Driver file: luatex.def on input line 149.
+Package xcolor Info: Driver file: luatex.def on input line 274.
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
+Package xcolor Info: Model `RGB' extended on input line 1366.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1368.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 14.
+
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
 File: l3backend-luatex.def 2024-01-04 L3 backend support: PDF output (LuaTeX)
 \l__color_backend_stack_int=\count303
@@ -525,8 +537,8 @@ Inserting `l3color' in `luaotfload.parse_color'.
 \l__pdf_internal_box=\box63
 )
 (./informe.aux
-LaTeX Info: Redefining \. on input line 13.
-LaTeX Info: Redefining \% on input line 13.
+LaTeX Info: Redefining \. on input line 12.
+LaTeX Info: Redefining \% on input line 12.
 )
 \openout1 = informe.aux
 
@@ -580,7 +592,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 19.
+Package hyperref Info: Link coloring ON on input line 19.
 
 (./informe.out) (./informe.out)
 \@outlinefile=\write3
@@ -596,199 +608,201 @@ Package translations Info: loading dictionary `translations-basic-dictionary' f
 or `spanish'. on input line 19.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 23.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 21.
 
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 23.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 21.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<./img/sustrato.jpg, id=41, 3276.24pt x 2457.18pt>
+<./img/sustrato.jpg, id=5, 3276.24pt x 2457.18pt>
 File: ./img/sustrato.jpg Graphic file (type jpg)
 <use ./img/sustrato.jpg>
-Package luatex.def Info: ./img/sustrato.jpg  used on input line 55.
+Package luatex.def Info: ./img/sustrato.jpg  used on input line 62.
 (luatex.def)             Requested size: 124.80286pt x 93.58377pt.
 
-Overfull \hbox (12.81535pt too wide) in paragraph at lines 44--57
+Overfull \hbox (12.81535pt too wide) in paragraph at lines 51--64
 []$[]$ $[]$ 
- []
-
-<./img/wegstr.png, id=42, 1204.5pt x 658.46pt>
-File: ./img/wegstr.png Graphic file (type png)
-<use ./img/wegstr.png>
-Package luatex.def Info: ./img/wegstr.png  used on input line 59.
-(luatex.def)             Requested size: 124.80286pt x 68.22101pt.
-
-Overfull \hbox (12.81535pt too wide) in paragraph at lines 58--76
-[]$[]$ $[]$
  []
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}<./img/sustrato.jpg><./img/we
-gstr.png>]
-<./img/vna.png, id=67, 1498.59875pt x 881.2925pt>
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+<./img/wegstr.png, id=30, 1204.5pt x 658.46pt>
+File: ./img/wegstr.png Graphic file (type png)
+<use ./img/wegstr.png>
+Package luatex.def Info: ./img/wegstr.png  used on input line 67.
+(luatex.def)             Requested size: 124.80286pt x 68.22101pt.
+
+Overfull \hbox (12.81535pt too wide) in paragraph at lines 66--73
+[]$[]$ $[]$
+ []
+
+<./img/vna.png, id=33, 1498.59875pt x 881.2925pt>
 File: ./img/vna.png Graphic file (type png)
 <use ./img/vna.png>
-Package luatex.def Info: ./img/vna.png  used on input line 81.
+Package luatex.def Info: ./img/vna.png  used on input line 95.
 (luatex.def)             Requested size: 230.09857pt x 135.30797pt.
 
-Overfull \hbox (16.70726pt too wide) in paragraph at lines 77--83
+Overfull \hbox (16.70726pt too wide) in paragraph at lines 91--97
 []$[]$ $[]$ 
  []
 
-<./img/ideal.jpg, id=68, 845.559pt x 597.9138pt>
+<./img/ideal.jpg, id=34, 845.559pt x 597.9138pt>
 File: ./img/ideal.jpg Graphic file (type jpg)
 <use ./img/ideal.jpg>
-Package luatex.def Info: ./img/ideal.jpg  used on input line 87.
+Package luatex.def Info: ./img/ideal.jpg  used on input line 101.
 (luatex.def)             Requested size: 350.99762pt x 248.20259pt.
 
-Overfull \hbox (2.44527pt too wide) in paragraph at lines 85--89
+Overfull \hbox (2.44527pt too wide) in paragraph at lines 99--103
 [] \T1/lmr/m/n/12 Ini-cian-
  []
 
-[2<./img/vna.png><./img/ideal.jpg>]
-<./img/plot-ideal.png, id=76, 1289.5377pt x 381.3447pt>
+[2<./img/sustrato.jpg><./img/wegstr.png><./img/vna.png>] [3<./img/ideal.jpg>]
+<./img/plot-ideal.png, id=55, 1289.5377pt x 381.3447pt>
 File: ./img/plot-ideal.png Graphic file (type png)
 <use ./img/plot-ideal.png>
-Package luatex.def Info: ./img/plot-ideal.png  used on input line 99.
+Package luatex.def Info: ./img/plot-ideal.png  used on input line 113.
 (luatex.def)             Requested size: 350.99762pt x 103.79652pt.
-<./img/simulado.jpg, id=77, 845.559pt x 597.9138pt>
+<./img/simulado.jpg, id=56, 845.559pt x 597.9138pt>
 File: ./img/simulado.jpg Graphic file (type jpg)
 <use ./img/simulado.jpg>
-Package luatex.def Info: ./img/simulado.jpg  used on input line 104.
+Package luatex.def Info: ./img/simulado.jpg  used on input line 118.
 (luatex.def)             Requested size: 234.00238pt x 165.46231pt.
- [3<./img/plot-ideal.png><./img/simulado.jpg>]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-13.
- (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
+27.
+
+(/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-<./img/plot-simulado.png, id=83, 1289.5377pt x 381.3447pt>
+<./img/plot-simulado.png, id=57, 1289.5377pt x 381.3447pt>
 File: ./img/plot-simulado.png Graphic file (type png)
 <use ./img/plot-simulado.png>
-Package luatex.def Info: ./img/plot-simulado.png  used on input line 115.
+Package luatex.def Info: ./img/plot-simulado.png  used on input line 129.
 (luatex.def)             Requested size: 350.99762pt x 103.79652pt.
-<./img/real.jpg, id=84, 4095.3pt x 3071.475pt>
+ [4<./img/plot-ideal.png><./img/simulado.jpg>]
+<./img/real.jpg, id=65, 4095.3pt x 3071.475pt>
 File: ./img/real.jpg Graphic file (type jpg)
 <use ./img/real.jpg>
-Package luatex.def Info: ./img/real.jpg  used on input line 122.
+Package luatex.def Info: ./img/real.jpg  used on input line 136.
 (luatex.def)             Requested size: 272.99881pt x 204.71451pt.
- [4<./img/plot-simulado.png>]
-<./img/gerber.png, id=91, 1174.3875pt x 1398.22375pt>
+<./img/gerber.png, id=66, 1174.3875pt x 1398.22375pt>
 File: ./img/gerber.png Graphic file (type png)
 <use ./img/gerber.png>
-Package luatex.def Info: ./img/gerber.png  used on input line 131.
+Package luatex.def Info: ./img/gerber.png  used on input line 145.
 (luatex.def)             Requested size: 127.41441pt x 151.6929pt.
-<./img/construccion1.jpg, id=92, 902.37125pt x 1604.99625pt>
+<./img/construccion1.jpg, id=67, 902.37125pt x 1604.99625pt>
 File: ./img/construccion1.jpg Graphic file (type jpg)
 <use ./img/construccion1.jpg>
-Package luatex.def Info: ./img/construccion1.jpg  used on input line 134.
+Package luatex.def Info: ./img/construccion1.jpg  used on input line 148.
 (luatex.def)             Requested size: 127.41441pt x 226.60818pt.
-<./img/construccion2.jpg, id=93, 902.37125pt x 1604.99625pt>
+<./img/construccion2.jpg, id=68, 902.37125pt x 1604.99625pt>
 File: ./img/construccion2.jpg Graphic file (type jpg)
 <use ./img/construccion2.jpg>
-Package luatex.def Info: ./img/construccion2.jpg  used on input line 137.
+Package luatex.def Info: ./img/construccion2.jpg  used on input line 151.
 (luatex.def)             Requested size: 127.41441pt x 226.60818pt.
 
-Overfull \hbox (18.0pt too wide) in paragraph at lines 125--139
+Overfull \hbox (18.0pt too wide) in paragraph at lines 139--153
 []$[]$
  []
 
 
-Overfull \hbox (1.32428pt too wide) in paragraph at lines 125--139
+Overfull \hbox (1.32428pt too wide) in paragraph at lines 139--153
 []$ $[]$ $[]$ 
  []
 
-[5<./img/real.jpg><./img/gerber.png><./img/construccion1.jpg><./img/construccion
-2.jpg>]
-<./img/plot-real.png, id=99, 1289.5377pt x 381.3447pt>
+[5<./img/plot-simulado.png><./img/real.jpg>]
+<./img/plot-real.png, id=75, 1289.5377pt x 381.3447pt>
 File: ./img/plot-real.png Graphic file (type png)
 <use ./img/plot-real.png>
-Package luatex.def Info: ./img/plot-real.png  used on input line 143.
+Package luatex.def Info: ./img/plot-real.png  used on input line 157.
 (luatex.def)             Requested size: 390.0pt x 115.32948pt.
 
-Overfull \hbox (18.0pt too wide) in paragraph at lines 143--144
+Overfull \hbox (18.0pt too wide) in paragraph at lines 157--158
 [][] 
  []
 
-
-Overfull \hbox (75.97229pt too wide) in paragraph at lines 153--154
-[]\T1/lmr/m/n/12 Link a re-po-si-to-rio en Github []$\T1/lmtt/m/n/12 https://git
-hub.com/SimonAulet/Analisis-[]Wilkinson/
+[6<./img/gerber.png><./img/construccion1.jpg><./img/construccion2.jpg><./img/plo
+t-real.png>]
+Overfull \hbox (75.97229pt too wide) in paragraph at lines 167--168
+[]\T1/lmr/m/n/12 Link a re-po-si-to-rio en Github [][]$\T1/lmtt/m/n/12 https://g
+ithub.com/SimonAulet/Analisis-[]Wilkinson/
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 157--160
-\T1/lmr/m/n/12 Disponible: []$\T1/lmtt/m/n/12 https://scdn.rohde-[]schwarz.com/u
-r/pws/dl_
+Underfull \hbox (badness 10000) in paragraph at lines 171--174
+\T1/lmr/m/n/12 Disponible: [][]$\T1/lmtt/m/n/12 https://scdn.rohde-[]schwarz.com
+/ur/pws/dl_
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 157--160
+Underfull \hbox (badness 10000) in paragraph at lines 171--174
 \T1/lmtt/m/n/12 downloads/dl_common_library/dl_brochures_and_datasheets/
  []
 
-[6
-Missing character: There is no ń (U+0144) in font ec-lmr12!
-<./img/plot-real.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 161--163
-\T1/lmr/m/n/12 Disponible: []$\T1/lmtt/m/n/12 https://www.rogerscorp.com/-[]/med
-ia/project/
+
+Underfull \hbox (badness 10000) in paragraph at lines 175--177
+\T1/lmr/m/n/12 Disponible: [][]$\T1/lmtt/m/n/12 https://www.rogerscorp.com/-[]/m
+edia/project/
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 161--163
+Underfull \hbox (badness 10000) in paragraph at lines 175--177
 \T1/lmtt/m/n/12 rogerscorp/documents/advanced-[]electronics-[]solutions/english/
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--166
-[]\T1/lmr/m/n/12 Rou-ter pa-ra im-pre-sión Dis-po-ni-ble: []$\T1/lmtt/m/n/12 ht
-tps://wegstr.com/
+Underfull \hbox (badness 10000) in paragraph at lines 178--180
+[]\T1/lmr/m/n/12 Rou-ter pa-ra im-pre-sión Dis-po-ni-ble: [][]$\T1/lmtt/m/n/12
+ https://wegstr.com/
  []
 
-[7] (./informe.aux
-LaTeX Info: Redefining \. on input line 13.
-LaTeX Info: Redefining \% on input line 13.
+[7
+Missing character: There is no ń (U+0144) in font ec-lmr12!
+] (./informe.aux
+LaTeX Info: Redefining \. on input line 12.
+LaTeX Info: Redefining \% on input line 12.
 )
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `informe.out' has not changed.
-(rerunfilecheck)             Checksum: 3BB00C9EBAD54908C2105DE52EE32CC7;1633.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 )
 
 Here is how much of LuaTeX's memory you used:
- 17323 strings out of 476553
+ 17733 strings out of 476553
  125027,1977958 words of node,token memory allocated
  633 words of node memory still in use:
    7 hlist, 2 vlist, 2 rule, 4 glue, 4 kern, 1 glyph, 34 attribute, 56 glue_spec
 , 19 attribute_list, 1 write, 4 pdf_action nodes
-   avail lists: 1:1,2:670,3:212,4:33,5:248,6:38,7:4515,8:160,9:777,10:26,11:505
- 38985 multiletter control sequences out of 65536+600000
- 43 fonts using 2665503 bytes
- 72i,10n,75p,920b,940s stack positions out of 10000i,1000n,20000p,200000b,200000s
+   avail lists: 1:2,2:700,3:234,4:37,5:255,6:33,7:4762,8:160,9:626,10:26,11:552
+ 39392 multiletter control sequences out of 65536+600000
+ 70 fonts using 4402215 bytes
+ 72i,10n,75p,920b,810s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sh
-are/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/
-lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texm
-f/fonts/type1/public/lm/lmtt12.pfb>
-Output written on informe.pdf (7 pages, 8459713 bytes).
+nts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texm
+f/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx1
+2.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/
+type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></us
+r/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/pub
+lic/lm/lmtt12.pfb>
+Output written on informe.pdf (7 pages, 8538593 bytes).
 
-PDF statistics: 164 PDF objects out of 1000 (max. 8388607)
- 124 compressed objects within 2 object streams
- 26 named destinations out of 1000 (max. 131072)
- 73 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 153 PDF objects out of 1000 (max. 8388607)
+ 109 compressed objects within 2 object streams
+ 29 named destinations out of 1000 (max. 131072)
+ 1 words of extra memory for PDF output out of 10000 (max. 100000000)
 
