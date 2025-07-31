@@ -99,6 +99,7 @@ País de origen & República Checa \\
 Primero hicimos un diagrama funcional y simulamos las relaciones entre entrada y salida.
 El esquemático se diseña en ADS y se pone a continuación
 \includegraphics[width = 0.9\linewidth]{./img/ideal.jpg}
+
 Iniciando desde el puerto uno (desde la izquierda) se tienen:
 
 \begin{itemize}
@@ -107,7 +108,7 @@ Iniciando desde el puerto uno (desde la izquierda) se tienen:
     \item Dos puertos con una resistencia en el medio de $90\Omega$. Se elige este valor por limitaciones de stock en laboratorio (ideal sería $100\Omega = 2Z_0$)
     \item Luego el resto hacia la derecha son parámetros necesarios únicamente para ejecutar la simulación
 \end{itemize}
-Como se ve en la sección de parámetros $S$ del esquemático, la simulación se hace con un barrido de frecuencias entre $0.5$ y $1.5 \text{ GHz}$. Se simula y los resultados se exportan al formato s3p para ser procesados luego con scikit rf en Python (análisis completo en los anexos).
+Como se ve en la sección de parámetros $S$ del esquemático, la simulación se hace con un barrido de frecuencias entre $0.5$ y $1.5 \text{ GHz}$. Se simula y los resultados se exportan al formato s3p para ser procesados luego con scikit rf en Python (análisis completo al final).
 Las líneas verticales gruesas en cada ploteo indican la frecuencia objetivo $1\text{GHz}$ y las líneas punteadas indican el máximo o mínimo encontrado programáticamente a partir de los datos
 
 \includegraphics[width=0.9\linewidth]{./img/plot-ideal.png}
@@ -128,7 +129,7 @@ Una vez definido el bloque físico, se realizan simulaciones en ADS para evaluar
 
 \includegraphics[width=0.9\linewidth]{./img/plot-simulado.png}
 
-Si bien hay un claro desfasaje hacia frecuencias más altas por limitaciónes de tiempo se determina que se mantiene el diseño.
+Si bien hay un claro desfasaje hacia frecuencias más altas, por limitaciónes de tiempo se determina que se mantiene el diseño.
 Se detectaron dos causas posibles de error: en primera insatancia, las modificaciones manuales al diseño físico extendieron la pista del transformador de cuarto de onda. En segunda instancia, se utilizó la herramienta linecalc durante la etapa de diseño del circuito ideal, por lo que podría haberse calculado con cualquier otro substrato teórico cuyas propiedades dieléctricas permitieran mayor velocidad de desplazamiento que la correspondiente al substrato que luego utilizamos.
 
 \section*{Construcción física}

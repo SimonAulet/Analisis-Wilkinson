@@ -1,6 +1,6 @@
-PWD /home/simon/Dropbox/UNRN/4.Electronica Analogica II/Divisor Wilkinson/Analisis mediciones/informe
+PWD /home/simon/Dropbox/UNRN/4.Electronica Analogica II/Divisor Wilkinson/informe
 INPUT /var/lib/texmf/web2c/luahbtex/lualatex.fmt
-INPUT /home/simon/Dropbox/UNRN/4.Electronica Analogica II/Divisor Wilkinson/Analisis mediciones/informe/informe.tex
+INPUT /home/simon/Dropbox/UNRN/4.Electronica Analogica II/Divisor Wilkinson/informe/informe.tex
 OUTPUT informe.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/tex-ini-files/lualatexquotejobname.lua
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/ltluatex.lua
